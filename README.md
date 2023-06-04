@@ -35,7 +35,7 @@ Run the segment_pdf.py script to segment the PDF.
 Use main.py to generate answers to your questions based on the segmented document.
 
 ```
-python3 main.py --document_path [segmented_pdf] --question "Your question here"
+python main.py --document_path [segmented_pdf] --question "Your question here"
 ```
 You should see the generated answer printed on your console.
 
