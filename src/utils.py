@@ -6,7 +6,7 @@ import tiktoken
 
 encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
 
-def toTextList(filepath,chunk_size=2000):
+def toTextList(filepath,chunk_size=2000, per_page=True):
     # creating a pdf reader object
     reader = PdfReader(filepath)
     text = ""
@@ -15,7 +15,7 @@ def toTextList(filepath,chunk_size=2000):
         page = reader.pages[i]
         text += page.extract_text()
         size = len(encoder.encode(text))
-        if size > chunk_size:
+        if size > chunk_size or per_page:
             texts.append(text)
             text = ""
     if text:
@@ -24,6 +24,12 @@ def toTextList(filepath,chunk_size=2000):
 
 SYSTEM_PROMPT = """
 You will get a book as a document input and and you are supposed to answer questions based on only this document.
+"""
+
+DOC_PROMPT="""
+Please answer the question <{question}> only using the document below:
+
+<{doc}>
 """
 
 if __name__ == '__main__':

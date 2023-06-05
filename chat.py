@@ -1,4 +1,4 @@
-from models import ChatGPT as Model
+from src.models import ChatGPT as Model
 
 agent = Model()
 while True:
