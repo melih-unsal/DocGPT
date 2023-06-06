@@ -1,0 +1,5 @@
+fire
+openai
+gradio
+sentence_transformers
+tqdm

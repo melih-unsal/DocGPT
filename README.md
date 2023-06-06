@@ -47,9 +47,7 @@ Use app.py to start the gradio application. You can either put the pdf file path
 ```
 python app.py --pdf <DOCUMENT_PATH>(Optional) --port <port number> (Optional)
 ```
-You should see the gradio application on localhost:8000
-
-Then after you 
+Then, you should see the gradio application on localhost:8000 (if you don't provide a port)
 
 ## Contribution
 This project is open to contributions! Feel free to create pull requests for bug fixes, improvements, or new features. For larger changes, please open an issue first to discuss what you'd like to change.
