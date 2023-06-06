@@ -30,14 +30,26 @@ After successfully installing, you can run PDFReaderGPT by following these steps
 
 Place your PDF document in the designated directory.
 
-Run the segment_pdf.py script to segment the PDF.
-
-Use main.py to generate answers to your questions based on the segmented document.
+You will then need to set the environment variable in the terminal.
 
 ```
-python main.py --document_path [segmented_pdf] --question "Your question here"
+export OPENAI_API_KEY="..."
 ```
-You should see the generated answer printed on your console.
+
+Alternatively, you could do this from inside the Jupyter notebook (or Python script):
+```
+import os
+os.environ["OPENAI_API_KEY"] = "..."
+```
+
+Use app.py to start the gradio application. You can either put the pdf file path as an argument or after you run the application, you can directly upload the pdf file.
+
+```
+python app.py --pdf <DOCUMENT_PATH>(Optional) --port <port number> (Optional)
+```
+You should see the gradio application on localhost:8000
+
+Then after you 
 
 ## Contribution
 This project is open to contributions! Feel free to create pull requests for bug fixes, improvements, or new features. For larger changes, please open an issue first to discuss what you'd like to change.
