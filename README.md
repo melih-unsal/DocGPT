@@ -1,11 +1,11 @@
-# DocGPT
-Welcome to the DocGPT repository. This project leverages the powerful language model GPT-3.5, created by OpenAI, to generate accurate and relevant answers based on the content of PDF documents.
+# PDFReaderGPT
+Welcome to the PDFReaderGPT repository. This project leverages the powerful language model GPT-3.5, created by OpenAI, to generate accurate and relevant answers based on the content of PDF documents.
 
 ## Overview
 The primary purpose of this project is to parse and understand PDF documents, and to generate precise answers for questions based on those documents. The mechanism involves dividing the document into smaller, manageable segments, pinpointing the relevant segment(s) for a given question, and generating a comprehensive answer using GPT-3.5.
 
 ## How it Works
-The DocGPT process flow consists of two main stages:
+The PDFReaderGPT process flow consists of two main stages:
 
 ### Document Segmentation: 
 The input PDF document is divided into small segments. These are manageable, searchable sections that can be easily analysed for relevant content.
@@ -21,12 +21,12 @@ Python 3.8+
 Pip3
 Clone the repository and install the necessary dependencies by running the following commands:
 ```
-git clone https://github.com/yourusername/DocGPT.git
-cd DocGPT
+git clone https://github.com/yourusername/PDFReaderGPT.git
+cd PDFReaderGPT
 pip3 install -r requirements.txt
 ```
 ## Usage
-After successfully installing, you can run DocGPT by following these steps:
+After successfully installing, you can run PDFReaderGPT by following these steps:
 
 Place your PDF document in the designated directory.
 

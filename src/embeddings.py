@@ -17,27 +17,24 @@ class Embeddings:
     def setDocs(self, path):
         self.docs = toTextList(path)
         self.docs_embeddings = self.encode(self.docs).cuda()
-    
-    def getClosests(self,question, top=2):
-        q_embeddings = self.encode(question).cuda()
+        
+    def __call__(self,keyword, top=2):
+        q_embeddings = self.encode(keyword).cuda()
         hits = util.semantic_search(q_embeddings, self.docs_embeddings, top_k=self.top_k)[0]
         ##### Re-Ranking #####
         # Now, score all retrieved passages with the cross_encoder
-        cross_inp = [[question, self.docs[hit['corpus_id']]] for hit in hits]
+        cross_inp = [[keyword, self.docs[hit['corpus_id']]] for hit in hits]
         cross_scores = self.cross_encoder.predict(cross_inp)
 
         # Sort results by the cross-encoder scores
         for idx in trange(len(cross_scores)):
             hits[idx]['cross-score'] = cross_scores[idx]
 
-        # Output of top-5 hits from bi-encoder
-        """print("\n-------------------------\n")
-        print(f"Top-{top} Bi-Encoder Retrieval hits")"""
         hits = sorted(hits, key=lambda x: x['score'], reverse=True)
         returning_docs = []
         for hit in hits[0:top]:
-            #print("\t{:.3f}\t{}".format(hit['score'], self.docs[hit['corpus_id']].replace("\n", " ")))
-            returning_docs.append(self.docs[hit['corpus_id']])
+            print(hit['score'])
+            returning_docs.append(self.docs[hit['corpus_id']].replace("\n", " "))
         return returning_docs
     
 if __name__ == "__main__":
