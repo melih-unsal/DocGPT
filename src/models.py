@@ -47,7 +47,7 @@ class OpenAIModel:
 
 
 class KeywordGPT(OpenAIModel):
-    def __init__(self, model = "gpt-3.5-turbo", system_message=GENERATE_KEYWORDS_SYSTEM_PROMPT):
+    def __init__(self, model = "gpt-3.5-turbo-16k", system_message=GENERATE_KEYWORDS_SYSTEM_PROMPT):
         super().__init__(model)
         self.messages = [{"role": "system", "content" :system_message}]
 
@@ -72,7 +72,7 @@ class KeywordGPT(OpenAIModel):
 
 
 class ChatGPT(OpenAIModel):
-    def __init__(self, model = "gpt-3.5-turbo", system_message=SYSTEM_PROMPT,pdf_path="/home/melih/Downloads/Introduction to User Research_Course_Book.pdf"):
+    def __init__(self, model = "gpt-3.5-turbo-16k", system_message=SYSTEM_PROMPT,pdf_path="/home/melih/Downloads/Introduction to User Research_Course_Book.pdf"):
         valid = os.path.exists(pdf_path or "")
         super().__init__(model)
         self.keyword_model = KeywordGPT()
@@ -114,7 +114,8 @@ class ChatGPT(OpenAIModel):
                     messages = self.start_messages + [{"role":"user","content":prompt}]
                 )  
             except Exception as e:
-                print("API Error during",self.model_name,"processing")
+                print("API Error during",self.model,"processing")
+                print(e)
             else:
                 break
         completion = result["choices"][0]["message"]["content"]

@@ -4,7 +4,7 @@ import fire
 from src.models import ChatGPT as Model
 from src.langchain_model import LangchainModel
 
-def main(port=8000,pdf="/home/melih/Downloads/Introduction to User Research_Course_Book.pdf"):
+def main(port=8000,pdf="/home/melih/Downloads/Applied Sales_Course_Book.pdf"):
 
     model = Model()
 
@@ -26,6 +26,7 @@ def main(port=8000,pdf="/home/melih/Downloads/Introduction to User Research_Cour
 
         if pdf:
             model.setDocs(pdf)
+            print(pdf,"has been set")
 
         chatbot = gr.Chatbot()
         msg = gr.Textbox()
@@ -50,16 +51,16 @@ def main(port=8000,pdf="/home/melih/Downloads/Introduction to User Research_Cour
     demo.queue()
     demo.launch(server_name="0.0.0.0", server_port=port)
 
-def langchain(port=8000, filepath='/home/melih/Downloads/Introduction to User Research_Course_Book.txt'):
+def langchain(port=8000, filepath='/home/melih/Downloads/Applied Sales_Course_Book.pdf'):
 
     model = LangchainModel(filepath=filepath)
     print("Langchain model has been successfully imported")
     
     with gr.Blocks() as demo:
         gr.Markdown(
-            """
+            f"""
         # PdfReaderGPT
-        Introduction to User Research Exam Solver
+        {filepath.split('/')[-1].split(".")[0]}
         """
         )
 
